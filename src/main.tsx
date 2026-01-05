@@ -2,11 +2,12 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 //import { HooksApp } from './HooksApp.tsx'
 import './index.css'
-import { TasksApp } from './05-useReducer/TaskApp.tsx'
+//import { ScrambleWordsUseReduce } from './05-useReducer/ScrambleWordsUseState.tsx'
+import { ScrambleWords } from './05-useReducer/ScrambleWords.tsx'
 
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <TasksApp></TasksApp>
+    <ScrambleWords></ScrambleWords>
   </StrictMode>,
 )
