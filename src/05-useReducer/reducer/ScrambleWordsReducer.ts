@@ -1,3 +1,5 @@
+import { act } from "react";
+
 export interface ScrambleWordsState {
   currentWord: string,
   errorCounter: number,
@@ -56,7 +58,7 @@ export const getInitialState = (): ScrambleWordsState => {
     guess: '',
     isGameOver: false,
     maxAllowErrors: 3,
-    maxSkips: 0,
+    maxSkips: 3,
     points: 0,
     scrambledWord: scrambleWord(suffledWords[0]),
     skipCounter: 0,
@@ -69,7 +71,7 @@ export type ScrambleWordsAction =
   | { type: 'SET_GUESS', payload: string }
   | { type: 'CHEACK_ANSWER' }
   | { type: 'SKIP_WORD' }
-  | { type: '' }
+  | { type: 'STAR_NEW_GAME', payload: ScrambleWordsState }
 
 export const scrambledWordReducer = (
   state: ScrambleWordsState,
@@ -102,12 +104,21 @@ export const scrambledWordReducer = (
       }
     }
     case 'SKIP_WORD': {
-      if (state.skipCounter >= state.maxSkips) {
-        return {
-          ...state
-        }
+      if (state.skipCounter >= state.maxSkips) return state
+      const updateWords = state.words.slice(1)
+      return {
+        ...state,
+        skipCounter: state.skipCounter + 1,
+        words: updateWords,
+        scrambledWord: scrambleWord(updateWords[0]),
+        currentWord: updateWords[0],
+        guess: '',
       }
+    }
 
+    case 'STAR_NEW_GAME': {
+      //return getInitialState()
+      return action.payload;
     }
     default: return state
   }

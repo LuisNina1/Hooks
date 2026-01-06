@@ -1,12 +1,10 @@
-import React, { useReducer, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
-import { SkipForward, Play, Slice } from 'lucide-react';
+import { SkipForward, Play } from 'lucide-react';
 import { getInitialState, scrambledWordReducer } from './reducer/ScrambleWordsReducer';
-
-
-
+import { useEffect, useReducer } from 'react';
+import confetti from 'canvas-confetti'
 
 export const ScrambleWordsUseReduce = () => {
   const [state, dispatch] = useReducer(scrambledWordReducer, getInitialState())
@@ -24,19 +22,15 @@ export const ScrambleWordsUseReduce = () => {
     skipCounter,
     totalWords,
   } = state
-  // const [words, setWords] = useState(shuffleArray(GAME_WORDS));
 
-  // const [currentWord, setCurrentWord] = useState(words[0]);
-  // const [scrambledWord, setScrambledWord] = useState(scrambleWord(currentWord));
-  // const [guess, setGuess] = useState('');
-  // const [points, setPoints] = useState(0);
-  // const [errorCounter, setErrorCounter] = useState(0);
-  // const [maxAllowErrors, setMaxAllowErrors] = useState(3);
-
-  // const [skipCounter, setSkipCounter] = useState(0);
-  // const [maxSkips, setMaxSkips] = useState(3);
-
-  // const [isGameOver, setIsGameOver] = useState(false);
+  useEffect(() =>{
+    if(points === 0) return
+    confetti({
+      particleCount: 100,
+      spread: 120,
+      origin: { y: 0.6 }
+    })
+  },[points])
 
   const handleGuessSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -45,28 +39,12 @@ export const ScrambleWordsUseReduce = () => {
 
   const handleSkip = () => {
     console.log('Palabra saltada');
-
-    // if(skipCounter >= maxSkips) return
-    // const updateWord = words.slice(1)
-
-    // setSkipCounter(skipCounter + 1)
-    // setCurrentWord(updateWord[0])
-    // setScrambledWord(scrambleWord(updateWord[0]))
-    // setGuess('')
-
+    dispatch({type: 'SKIP_WORD'})
   };
 
   const handlePlayAgain = () => {
     console.log('Jugar de nuevo');
-    // const updateWords = shuffleArray(GAME_WORDS)
-    // setWords(updateWords)
-    // setCurrentWord(updateWords[0])
-    // setScrambledWord(scrambleWord(updateWords[0]))
-    // setGuess('')
-    // setPoints(0)
-    // setErrorCounter(0)
-    // setSkipCounter(0)
-    // setIsGameOver(false)
+    dispatch({type: 'STAR_NEW_GAME', payload: getInitialState()})
   };
 
   //! Si ya no hay palabras para jugar, se muestra el mensaje de fin de juego
