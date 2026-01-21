@@ -1,73 +1,57 @@
-# React + TypeScript + Vite
+# React Hooks  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este repositorio es un diario de aprendizaje detallado sobre **React**, centrado especialmente en el dominio de los **Hooks**, desde los fundamentos hasta los más avanzados e incorporaciones recientes de la librería.
 
-Currently, two official plugins are available:
+El proyecto está construido utilizando **Vite** + **TypeScript** para asegurar un entorno de desarrollo rápido y con tipado fuerte.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tecnologías utilizadas
 
-## React Compiler
+* **React 19.2**
+* **TypeScript**
+* **Vite**
+* **Tailwind CSS**
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+---
 
-## Expanding the ESLint configuration
+## Contenido del Aprendizaje
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+He dividido el aprendizaje en módulos progresivos para entender el ciclo de vida y la gestión del estado en React:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 1. Hooks Básicos
+* **`01-useState`**: Manejo de estado local y actualizaciones de estado.
+* **`02-useEffect`**: Gestión de efectos secundarios (suscripciones, llamadas a APIs, manipulación manual del DOM).
+* **`04-useRef`**: Acceso directo a elementos del DOM y persistencia de valores entre renderizados sin disparar nuevos renders.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 2. Optimización y Rendimiento
+* **`06-memos`**: Implementación de `React.memo`, `useMemo` y `useCallback` para evitar renderizados innecesarios y optimizar el costo computacional.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 3. Gestión de Estado Avanzada
+* **`05-useReducer`**: Alternativa a `useState` para lógica de estado compleja o estados que dependen del anterior.
+* **`09-useContext`**: Implementación del Context API para evitar el "prop drilling" y gestionar el estado global de la aplicación.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 4. Nuevas Funcionalidades y Patrones
+* **`07-useOptimistic`**: Aprendizaje sobre actualizaciones optimistas en la UI para mejorar la experiencia de usuario.
+* **`08-use-suspense`**: Manejo de estados de carga y componentes asíncronos de forma declarativa.
+* **`03-examples`**: Aplicación de Hooks personalizados (Custom Hooks) y casos de uso del mundo real.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Cómo ejecutar el proyecto
+
+1.  Clona el repositorio:
+    ```bash
+    git clone [https://github.com/tu-usuario/nombre-del-repo.git](https://github.com/tu-usuario/nombre-del-repo.git)
+    ```
+2.  Instala las dependencias:
+    ```bash
+    npm install
+    ```
+3.  Inicia el servidor de desarrollo:
+    ```bash
+    npm run dev
+    ```
+
+---
+
+## 💡 Notas personales
+Este repositorio forma parte de mi camino hacia el desarrollo **Front-End**, donde busco no solo escribir código que funcione, sino código eficiente, escalable y fácil de mantener.
