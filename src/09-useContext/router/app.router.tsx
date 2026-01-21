@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate } from "react-router";
 import { AboutPage } from "../pages/about/AboutPage";
 import { LoginPage } from "../pages/auth/LoginPage";
 import { ProfilePage } from "../pages/profile/ProfilePage";
+import { PrivateRouter } from "./PrivateRouter";
 
 
 export const AppRouter = createBrowserRouter([
@@ -15,7 +16,7 @@ export const AppRouter = createBrowserRouter([
   },
   {
     path: "/profile",
-    element: <ProfilePage></ProfilePage>,
+    element: <PrivateRouter element={<ProfilePage></ProfilePage>}></PrivateRouter>,
   },
   {
     path: '*',
